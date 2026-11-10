@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="color-scheme" content="dark"/>
+<title>Training Library · JSON Viewer</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#eaf0ef;background:#0e1519;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}.shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr}.top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 28px;border-bottom:1px solid #263339;background:#111b20}.logo{display:flex;align-items:center;gap:12px}.mark{background:#2ce8ae;color:#09251b;border-radius:11px;padding:9px;font-weight:900;font-size:22px;line-height:1}.logo strong{display:block;letter-spacing:-.03em}.logo small{display:block;color:#82979c;margin-top:2px}.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.btn{border:1px solid #385158;color:#e9f7f3;background:#1d3036;border-radius:10px;padding:9px 13px;font-size:13px;font-weight:700;text-decoration:none}.btn:hover{background:#284047}.btn.primary{background:#2ce8ae;border-color:#2ce8ae;color:#08271e}.btn.primary:hover{background:#65f5c7}.file{position:absolute;clip-path:inset(50%);width:1px;height:1px}.main{display:grid;grid-template-columns:minmax(315px,370px) minmax(0,1fr);min-height:0}.sidebar{background:#101a1f;border-right:1px solid #263339;min-height:calc(100vh - 74px);display:flex;flex-direction:column}.filters{padding:22px 19px 17px;border-bottom:1px solid #263339}.eyebrow{font-size:11px;color:#2ce8ae;letter-spacing:.15em;font-weight:800;text-transform:uppercase;margin:0 0 9px}h1{font-size:24px;letter-spacing:-.045em;line-height:1.12;margin:0}.sub{color:#8da5a8;font-size:12px;margin:10px 0 17px}.search{display:block;width:100%;padding:12px 14px 12px 40px;background:#19282e;color:#eff;border:1px solid #34474d;border-radius:11px;outline:none}.search:focus{border-color:#2ce8ae}.searchwrap{position:relative}.searchicon{position:absolute;left:14px;top:12px;opacity:.7}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.chip{border:1px solid #344b50;color:#9db4b7;border-radius:7px;background:#16242a;font-size:11px;padding:7px 9px}.chip.active{color:#061c18;border-color:#36e1b0;background:#36e1b0;font-weight:800}.count{display:flex;justify-content:space-between;align-items:center;color:#8da1a5;padding:12px 20px;font-size:12px}.list{overflow:auto;max-height:calc(100vh - 352px);padding:0 9px 18px}.session{display:flex;gap:12px;width:100%;padding:11px;text-align:left;background:transparent;color:#e2eeee;border:1px solid transparent;border-radius:12px;min-height:90px;margin-bottom:4px}.session:hover{background:#1b2c31}.session.active{background:#193831;border-color:#297e68}.thumb{width:85px;height:66px;flex-shrink:0;object-fit:contain;background:#233137;border-radius:8px}.sess-right{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:5px}.session strong{display:block;line-height:1.23;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.session small{color:#8ea1a4;font-size:11px;line-height:1.35}.session .sid{font-family:ui-monospace,monospace;color:#648781;font-size:10px}.emptylist{padding:20px;color:#a7bbbb;font-size:13px}.viewer{padding:28px clamp(18px,4vw,60px) 60px;min-width:0;overflow:auto;height:calc(100vh - 74px)}.crumb{color:#2ce8ae;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px}.headline{display:flex;justify-content:space-between;gap:16px;align-items:start;margin-bottom:20px}.headline h2{font-size:clamp(26px,3vw,42px);letter-spacing:-.055em;line-height:1.13;margin:0 0 10px}.muted{color:#9aadb0}.small{font-size:12px}.tag{display:inline-flex;padding:5px 9px;border-radius:6px;background:#1e3836;color:#66eac5;font-size:11px;font-weight:700;margin:4px 6px 4px 0}.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,290px);gap:24px;padding:23px;border:1px solid #2b3c41;border-radius:15px;background:#132024;margin-bottom:24px}.introimg{width:100%;height:195px;object-fit:contain;background:#203139;border-radius:9px}.prose{font-size:14px;color:#c0d0d0;line-height:1.68;overflow-wrap:anywhere}.prose h2,.prose h3{color:#ecf5f4;font-size:14px;margin:15px 0 6px}.prose p{margin:6px 0}.prose ul,.prose ol{padding-left:21px;margin:7px 0}.prose li{margin-bottom:4px}.prose a{color:#64eec4}.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.stat{background:#1b3136;border:1px solid #325052;border-radius:8px;padding:8px 11px;font-size:12px}.stat b{color:#2ce8ae;margin-right:5px}.grouprow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:24px 0 11px}.groupname{font-size:16px;font-weight:800;letter-spacing:-.02em}.groupnum{font-size:11px;color:#6ce7bc;background:#1a3832;border-radius:6px;padding:6px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px}.ex{border:1px solid #2d4448;background:#142329;border-radius:12px;overflow:hidden}.exhead{display:grid;grid-template-columns:105px 1fr;gap:12px;align-items:center;padding:11px;border-bottom:1px solid #2b3f43}.exhead img{width:105px;height:80px;object-fit:contain;background:#263b41;border-radius:7px}.exhead h4{margin:0 0 5px;line-height:1.3;font-size:14px}.exbody{padding:14px}.exbody .prose{font-size:12px;line-height:1.6}.exbody .prose h3{font-size:12px}.metadata{color:#738f90;font-size:10px;word-break:break-all;margin-top:9px}.notice{padding:14px;border:1px dashed #576a6c;border-radius:10px;color:#aac0bd;background:#17272c;line-height:1.5;font-size:13px}.landing{max-width:640px;margin:15vh auto;text-align:center}.landing h2{font-size:35px;letter-spacing:-.04em;margin:0}.landing p{color:#97aeb0;line-height:1.6}#loadmore{margin:10px auto;display:block}.footer{color:#678181;font-size:11px;margin-top:40px}img{color:transparent}@media(max-width:850px){.main{grid-template-columns:1fr}.sidebar{min-height:auto;border-right:0;border-bottom:1px solid #263339}.filters{padding:15px}.list{display:flex;overflow-x:auto;max-height:none;padding:7px}.session{min-width:240px;width:240px}.count{padding:8px 16px}.viewer{height:auto;padding:20px 16px 50px}.intro{grid-template-columns:1fr}.introimg{max-width:390px}.top{padding:12px 15px}.logo small{display:none}}@media(max-width:530px){.logo strong{font-size:12px}.top{flex-wrap:wrap}.actions{margin-left:auto}.btn{font-size:11px;padding:8px}.viewer{padding:16px 12px 30px}.filters h1{font-size:19px}.intro{padding:14px}}
+
+/* Phone-first enhancements layered over the original desktop stylesheet. */
+:root{--tap-accent:#2ce8ae;--header-height:63px}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--tap-accent);outline-offset:3px}
+.mobile-toolbar,.exercise-toggle{display:none}.diagram-zoom{display:block;border:0;background:transparent;padding:0;width:105px;height:80px}.diagram-zoom img{display:block;width:105px;height:80px;object-fit:contain}
+.zoom-dialog{border:1px solid #406163;border-radius:18px;padding:12px;background:#101b20;color:#f1fcf9;max-width:min(960px,96vw);max-height:94dvh;box-shadow:0 24px 80px #000b}
+.zoom-dialog::backdrop{background:#030d10d9}
+.zoom-dialog img{display:block;max-width:100%;max-height:75dvh;object-fit:contain;margin:auto}
+.zoom-dialog .zoom-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:2px 4px 10px;font-size:14px}
+.zoom-dialog button{background:#233c40;border:1px solid #4c696b;border-radius:9px;padding:10px 15px;color:#fff;min-height:44px}
+@media(max-width:850px){
+  html{scroll-padding-top:120px}body{overscroll-behavior-y:contain}
+  .shell{display:block;min-height:100dvh}
+  .top{position:sticky;top:0;z-index:25;gap:10px;background:#111b20ed;backdrop-filter:blur(12px);padding:10px 14px;min-height:60px;padding-top:max(10px,env(safe-area-inset-top))}
+  .top .mark{width:36px;height:36px;display:grid;place-items:center;padding:0;font-size:21px}
+  .top .logo{gap:9px;min-width:0}
+  .top .logo strong{font-size:12px;letter-spacing:0}
+  .top .logo small{display:none}
+  #topstats{display:none}
+  .actions{flex-wrap:nowrap;gap:6px;margin-left:auto}
+  .actions .btn{min-height:40px;display:inline-flex;align-items:center;justify-content:center;padding:8px 10px;font-size:12px;white-space:nowrap}
+  .main{display:block;min-height:calc(100dvh - var(--header-height))}
+  .sidebar{min-height:0;background:#0e1519;display:flex;flex-direction:column;border:none}
+  .filters{padding:21px 16px 11px;border-bottom:0}
+  .filters .eyebrow{font-size:10px;margin-bottom:5px}
+  .filters h1{font-size:27px}
+  .filters .sub{font-size:12px;margin:6px 0 15px}
+  .search{min-height:48px;padding:13px 14px 13px 43px;font-size:16px}
+  .searchicon{top:14px;font-size:20px}
+  .chips{display:flex;flex-wrap:nowrap;gap:8px;margin:12px -16px 0;padding:1px 16px 9px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{font-size:12px;min-height:41px;border-radius:100px;padding:10px 13px;white-space:nowrap;flex:0 0 auto;scroll-snap-align:start}
+  .count{padding:5px 16px 10px;font-size:12px}
+  .count #selectedkind{max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .list{display:block;max-height:none;overflow:visible;padding:0 12px max(32px,env(safe-area-inset-bottom))}
+  .session{width:100%;min-width:0;min-height:94px;display:flex;align-items:center;gap:12px;background:#152329;border:1px solid #2a4044;border-radius:13px;padding:10px;margin-bottom:9px}
+  .session.active{background:#1b322e;border-color:#407568}
+  .thumb{width:108px;height:78px;border-radius:9px;background:#23343a}
+  .session strong{font-size:15px;line-height:1.26;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .session small{font-size:12px}
+  .session .sid{font-size:10px}
+  #loadmore{display:block;width:100%;margin:12px 0 0;min-height:48px;font-size:13px}
+  .viewer{display:none;height:auto;overflow:visible;min-height:calc(100dvh - var(--header-height));padding:0 14px max(45px,env(safe-area-inset-bottom))}
+  body.mobile-detail .sidebar{display:none}
+  body.mobile-detail .viewer{display:block}
+  .mobile-toolbar{position:sticky;top:var(--header-height);z-index:18;display:flex;align-items:center;gap:8px;justify-content:space-between;min-height:60px;padding:8px 0 10px;background:#0e1519ed;backdrop-filter:blur(12px);border-bottom:1px solid #2b4146;margin:0 -14px 18px;padding-inline:14px}
+  .mobile-back{background:#1c3436;color:#ddfff3;border:1px solid #3b645b;min-height:44px;border-radius:10px;padding:0 12px;font-size:13px;font-weight:750;flex-shrink:0}
+  .mobile-jump{display:flex;align-items:center;gap:6px;font-size:11px;color:#a5b8b8;min-width:0;max-width:65%}
+  .mobile-jump select{min-height:44px;border:1px solid #38545a;border-radius:10px;background:#1b2f34;color:#eff;font-size:13px;padding:0 9px;min-width:0;max-width:190px;width:100%}
+  .crumb{font-size:10px;line-height:1.5;overflow-wrap:anywhere;margin-bottom:8px}
+  .headline{align-items:start;gap:6px;margin-bottom:15px;flex-wrap:wrap}
+  .headline h2{font-size:clamp(25px,8vw,37px);line-height:1.14;overflow-wrap:anywhere}
+  .headline .small{overflow-wrap:anywhere;line-height:1.5;font-size:11px}
+  .tag{font-size:11px;margin:5px 0}
+  .intro{display:flex;flex-direction:column;gap:14px;padding:16px;margin-bottom:18px}
+  .introimg{width:100%;max-width:none;height:min(56vw,220px)}
+  .prose{font-size:14px;line-height:1.65}
+  .prose h2,.prose h3{font-size:14px}
+  .stats{gap:7px}
+  .stat{font-size:12px;padding:7px 10px}
+  .grouprow{margin:23px 0 10px;align-items:flex-start}
+  .groupname{font-size:17px;line-height:1.35}
+  .groupnum{white-space:nowrap}
+  .grid{grid-template-columns:1fr;gap:12px}
+  .ex{border-radius:14px;background:#142329}
+  .exhead{grid-template-columns:minmax(0,1fr);gap:10px;padding:12px}
+  .exhead h4{font-size:17px;line-height:1.35;margin:1px 0 4px}
+  .exhead .small{font-size:12px}
+  .exhead img{width:100%;height:min(58vw,265px);object-fit:contain;border-radius:10px;background:#263b41}
+  .diagram-zoom{display:block;width:100%;height:auto;border:0;background:transparent;color:inherit;padding:0;position:relative;min-height:0}
+  .diagram-zoom::after{content:'Tap to enlarge  ↗';display:block;position:absolute;right:9px;bottom:9px;font-size:11px;color:#eafff7;background:#15322edc;padding:6px 9px;border-radius:7px}
+  .exercise-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;width:calc(100% - 24px);min-height:44px;margin:0 12px 12px;border:1px solid #3c575c;border-radius:10px;background:#1e3338;color:#d2f8ed;padding:9px 13px;font-size:13px;font-weight:750}
+  .exercise-toggle .chevron{font-size:18px;transition:transform .16s ease}
+  .ex.expanded .exercise-toggle .chevron{transform:rotate(180deg)}
+  .ex .exbody{display:none;border-top:1px solid #30474b;padding:15px 14px}
+  .ex.expanded .exbody{display:block}
+  .exbody .prose{font-size:14px;line-height:1.65}
+  .exbody .prose h3{font-size:14px}
+  .footer{margin-top:22px}
+}
+@media(max-width:400px){.actions .btn{font-size:11px;padding:8px 7px}.top{padding-inline:10px}.top .logo strong{font-size:11px}.mobile-jump select{max-width:132px}.session .thumb{width:95px;height:74px}}
+@media(prefers-reduced-motion:reduce){.ex .chevron{transition:none!important}*{scroll-behavior:auto!important}}
+
+</style>
+</head>
+<body><div class="shell">
+<header class="top"><div class="logo"><div class="mark">↗</div><div><strong>TRAINING LIBRARY</strong><small>Unified football training data</small></div></div><div class="actions"><span class="small muted" id="topstats">Loading collection…</span><button class="btn" id="openfile" type="button">Open JSON</button><input id="fileinput" class="file" type="file" accept=".json,.gz,.txt,application/json"/><a class="btn primary" href="./unified.json" download="unified.json" id="download">Download JSON</a></div></header>
+<div class="main"><aside class="sidebar"><div class="filters"><p class="eyebrow">Explore the collection</p><h1>Training sessions</h1><p class="sub" id="collectionstats">Search, filter, and browse exercises</p><div class="searchwrap"><span class="searchicon">⌕</span><input id="search" class="search" type="search" placeholder="Search sessions or exercises…" aria-label="Search sessions or exercises"/></div><div class="chips" id="chips"></div></div><div class="count"><span id="found">0 sessions</span><span id="selectedkind"></span></div><div class="list" id="sessionlist"></div></aside><main class="viewer" id="viewer" aria-live="polite"><div class="landing"><h2>Your training collection</h2><p>Choose a session on the left to explore its exercise groups, instructions and diagrams.</p></div></main></div></div>
+<script>
+// The data lives in unified.json. Open JSON can load a local export too.
+const EMBEDDED_GZIP = ''; // Dataset loaded from ./unified.json (single source of truth)
+const $=id=>document.getElementById(id);
+const state={data:null,all:[],filtered:[],current:null,category:'Alle',limit:45,search:'',urlToId:new Map()};
+const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function sanitizeHTML(raw){
+ if(!raw)return '';
+ const d=new DOMParser().parseFromString('<section>'+raw+'</section>','text/html');const root=d.body.firstElementChild;
+ const allowed=new Set(['P','H1','H2','H3','H4','H5','H6','UL','OL','LI','B','STRONG','I','EM','U','BR','SPAN','A','BLOCKQUOTE']);
+ function walk(n){if(n.nodeType===3)return document.createTextNode(n.textContent);if(n.nodeType!==1)return document.createTextNode('');if(['SCRIPT','STYLE','IFRAME','OBJECT','SVG','FORM','INPUT','LINK'].includes(n.tagName))return document.createTextNode('');let elem=document.createElement(allowed.has(n.tagName)?n.tagName.toLowerCase():'span');if(n.tagName==='A'){try{const u=new URL(n.getAttribute('href')||'',location.href);if(['http:','https:'].includes(u.protocol)){elem.setAttribute('href',u.href);elem.setAttribute('target','_blank');elem.setAttribute('rel','noopener noreferrer')}}catch(e){}}for(const child of n.childNodes)elem.appendChild(walk(child));return elem;}
+ const out=document.createElement('div');for(const node of root.childNodes)out.appendChild(walk(node));return out.innerHTML;
+}
+function urlToImage(url){return url;}
+function imageTag(url,klass,alt){if(!url)return `<div class="${klass}"></div>`;let local=urlToImage(url);let remote=url;return `<img class="${klass}" loading="lazy" alt="${escapeHTML(alt)}" src="${escapeHTML(local)}" data-remote="${escapeHTML(remote)}"/>`}
+function activateImages(root){root.querySelectorAll('img[data-remote]').forEach(i=>{i.addEventListener('error',()=>{if(i.src!==i.dataset.remote){i.src=i.dataset.remote}else{i.style.opacity='.25'}},{once:false})})}
+function categoryCount(c){return state.all.filter(x=>x.name===c).length}
+function setup(data){if(!data||!Array.isArray(data.sessions)||!Array.isArray(data.texts)||!data.media_url_base)throw Error('Expected planr-unified-v1 with sessions, texts and media_url_base.');state.data=data;state.all=data.sessions;const dl=$('download');if(dl.dataset.blob)URL.revokeObjectURL(dl.dataset.blob);dl.href=URL.createObjectURL(new Blob([JSON.stringify(data)],{type:'application/json'}));dl.dataset.blob=dl.href;state.urlToId=new Map();for(const s of state.all)for(const g of s.exercise_groups||[])for(const e of g.exercises||[])for(const m of e.media||[])state.urlToId.set(data.media_url_base+m.url,m.image_id);
+ state.all.forEach((s,i)=>{s._index=i;s._search=(s.name+' '+s.text+' '+s.exercise_groups.flatMap(g=>[g.label,g.text_ref==null?'':data.texts[g.text_ref],...g.exercises.flatMap(e=>[e.name,data.texts[e.text_ref]])]).join(' ')).replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').toLocaleLowerCase('de')});
+ const total=state.all.reduce((n,s)=>n+s.exercise_groups.reduce((m,g)=>m+g.exercises.length,0),0);$('topstats').textContent=`${state.all.length} sessions · ${total} exercises`;$('collectionstats').textContent=`${state.all.length} sessions in ${new Set(state.all.map(s=>s.name)).size} categories`;
+ const cats=[...new Set(state.all.map(s=>s.name))].sort((a,b)=>a.localeCompare(b,'de'));$('chips').innerHTML=['Alle',...cats].map(c=>`<button class="chip ${c==='Alle'?'active':''}" data-cat="${escapeHTML(c)}">${escapeHTML(c==='Alle'?`All (${state.all.length})`:`${c} (${categoryCount(c)})`)}</button>`).join('');$('chips').querySelectorAll('button').forEach(b=>b.onclick=()=>{state.category=b.dataset.cat;state.limit=45;filter();});
+ state.current=state.all[0]?.id_session;filter();if(state.all.length)show(state.all[0]);
+}
+function filter(){const q=state.search.trim().toLocaleLowerCase('de');state.filtered=state.all.filter(s=>(state.category==='Alle'||s.name===state.category)&&(!q||s._search.includes(q)));$('chips').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.cat===state.category));$('found').textContent=`${state.filtered.length} sessions`;$('selectedkind').textContent=state.category==='Alle'?'':state.category;drawList()}
+function drawList(){let lim=state.filtered.slice(0,state.limit);$('sessionlist').innerHTML=lim.map(s=>`<button class="session ${s.id_session===state.current?'active':''}" data-id="${escapeHTML(s.id_session)}">${imageTag(s.preview_image,'thumb',s.name)}<span class="sess-right"><strong>${escapeHTML(s.name)}</strong><small>${s.exercise_groups.length} groups · ${s.exercise_groups.reduce((n,g)=>n+g.exercises.length,0)} exercises</small><span class="sid">#${String(s._index+1).padStart(3,'0')} · ${escapeHTML(s.id_session.slice(0,8))}</span></span></button>`).join('')+(state.filtered.length>state.limit?`<button id="loadmore" class="btn">Load more sessions</button>`:'')||'<div class="emptylist">No matching sessions. Try a different search.</div>';activateImages($('sessionlist'));$('sessionlist').querySelectorAll('.session').forEach(btn=>btn.onclick=()=>{let s=state.all.find(x=>x.id_session===btn.dataset.id);show(s);drawList()});if($('loadmore'))$('loadmore').onclick=()=>{state.limit+=45;drawList()}}
+function range(v){if(!v||v.min==null||v.max==null)return '—';return v.min===v.max?String(v.min):v.min+'–'+v.max}
+function show(s){if(!s)return;state.current=s.id_session;const d=state.data;let n=s.exercise_groups.reduce((sum,g)=>sum+g.exercises.length,0);
+ let html=`<div class="crumb">Training collection / ${escapeHTML(s.name)}</div><div class="headline"><div><h2>${escapeHTML(s.name)} <span class="muted">#${String(s._index+1).padStart(3,'0')}</span></h2><div class="small muted">Session ID · ${escapeHTML(s.id_session)}</div></div><span class="tag">${n} exercises</span></div>`;
+ html+=`<div class="intro"><div><div class="prose">${sanitizeHTML(s.text)}</div><div class="stats"><span class="stat"><b>Players</b> ${range(s.no_players)}</span><span class="stat"><b>Goalkeepers</b> ${range(s.goalkeeper)}</span><span class="stat"><b>Groups</b> ${s.exercise_groups.length}</span></div><p class="small muted">Published: ${escapeHTML(s.published_at||'—')}</p></div><div>${imageTag(s.preview_image,'introimg',s.name)}</div></div>`;
+ for(let gi=0;gi<s.exercise_groups.length;gi++){const g=s.exercise_groups[gi];html+=`<section><div class="grouprow"><div class="groupname">${gi+1}. ${escapeHTML(g.label)}</div><div class="groupnum">${g.exercises.length} exercise${g.exercises.length===1?'':'s'}</div></div>`;if(g.text_ref!==undefined)html+=`<div class="prose">${sanitizeHTML(d.texts[g.text_ref])}</div>`;html+='<div class="grid">';for(const e of g.exercises){const first=e.media?.[0];let src=first?d.media_url_base+first.url:null;html+=`<article class="ex"><div class="exhead">${imageTag(src,'','Exercise diagram')}<div><h4>${escapeHTML(e.name)}</h4><div class="small muted">${e.media?.length||0} diagrams · ${range(e.no_players)} players</div></div></div><div class="exbody"><div class="prose">${sanitizeHTML(d.texts[e.text_ref])}</div><div class="metadata">${escapeHTML(e.id_exercise)}</div></div></article>`}html+='</div></section>'}
+ html+=`<div class="footer">Original IDs and descriptions preserved. Diagram thumbnails are optimized WebP; source SVG links remain in the unified JSON. Source-file mappings and export failures are retained.</div>`;
+ $('viewer').innerHTML=html;activateImages($('viewer'));if(window.innerWidth>=851)$('viewer').scrollTo(0,0);
+}
+async function unzip(bytes){const ds=new DecompressionStream('gzip');return await new Response(new Blob([bytes]).stream().pipeThrough(ds)).text()}
+async function start(){try{let data;if(EMBEDDED_GZIP){const bytes=Uint8Array.from(atob(EMBEDDED_GZIP),x=>x.charCodeAt(0));data=JSON.parse(await unzip(bytes))}else{const res=await fetch('./unified.json');if(!res.ok)throw Error('Cannot load unified.json ('+res.status+'). You can still open your local file.');data=await res.json()}setup(data)}catch(err){$('viewer').innerHTML=`<div class="landing"><h2>Open your JSON collection</h2><p>${escapeHTML(err.message)}</p><p>Select <strong>Open JSON</strong> to load the optimized collection locally.</p></div>`;$('topstats').textContent='No collection loaded'}}
+$('search').addEventListener('input',ev=>{state.search=ev.target.value;state.limit=45;if(state.data)filter()});$('openfile').onclick=()=>$('fileinput').click();$('fileinput').onchange=async ev=>{const file=ev.target.files[0];if(!file)return;try{const bytes=await file.arrayBuffer();const str=file.name.endsWith('.gz')?await unzip(bytes):new TextDecoder().decode(bytes);setup(JSON.parse(str))}catch(err){alert('Could not load JSON: '+err.message)}};start();
+</script><script>
+/* Mobile navigation, collapsible instructions, zoom, and local JSON download. */
+(function(){
+ const mobile=()=>window.matchMedia('(max-width:850px)').matches;
+ const viewer=document.getElementById('viewer');
+ const top=document.querySelector('.top');
+ let firstRender=true,resultsY=0;
+ const adjustHeader=()=>document.documentElement.style.setProperty('--header-height',Math.ceil(top.getBoundingClientRect().height)+'px');
+ adjustHeader();window.addEventListener('resize',adjustHeader,{passive:true});
+ const dlg=document.createElement('dialog');dlg.className='zoom-dialog';
+ dlg.innerHTML='<div class="zoom-top"><strong>Exercise diagram</strong><button type="button" aria-label="Close diagram">Close ✕</button></div><img alt="Enlarged exercise diagram">';
+ document.body.appendChild(dlg);dlg.querySelector('button').onclick=()=>dlg.close();
+ dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+ const baseShow=show;
+ show=function(session){
+   if(!session)return;
+   if(mobile()&&firstRender===false&&!document.body.classList.contains('mobile-detail'))resultsY=window.scrollY;
+   baseShow(session);
+   const panels=Array.from(viewer.querySelectorAll(':scope > section'));
+   panels.forEach((node,i)=>node.id='exercise-group-'+i);
+   const toolbar=document.createElement('div');toolbar.className='mobile-toolbar';
+   const back=document.createElement('button');back.type='button';back.className='mobile-back';back.textContent='← Sessions';back.setAttribute('aria-label','Back to session list');
+   back.onclick=()=>{document.body.classList.remove('mobile-detail');requestAnimationFrame(()=>window.scrollTo(0,resultsY))};
+   const label=document.createElement('label');label.className='mobile-jump';label.textContent='Group';
+   const jump=document.createElement('select');jump.setAttribute('aria-label','Jump to exercise group');
+   panels.forEach((panel,i)=>{const opt=document.createElement('option');opt.value=panel.id;const title=panel.querySelector('.groupname');opt.textContent=(i+1)+'. '+(title?title.textContent.trim():'Exercises');jump.appendChild(opt)});
+   jump.onchange=()=>{const section=document.getElementById(jump.value);if(section)section.scrollIntoView({behavior:'smooth',block:'start'})};
+   label.appendChild(jump);toolbar.appendChild(back);if(panels.length>1)toolbar.appendChild(label);
+   viewer.insertBefore(toolbar,viewer.firstChild);
+   panels.forEach(panel=>panel.style.scrollMarginTop='calc(var(--header-height) + 70px)');
+   viewer.querySelectorAll('article.ex').forEach((card,i)=>{
+     const content=card.querySelector('.exbody');if(!content)return;
+     const toggle=document.createElement('button');toggle.type='button';toggle.className='exercise-toggle';toggle.setAttribute('aria-expanded','false');
+     const toggleId='exercise-body-'+i;content.id=toggleId;toggle.setAttribute('aria-controls',toggleId);
+     toggle.innerHTML='<span>Show instructions</span><span class="chevron" aria-hidden="true">⌄</span>';
+     toggle.onclick=()=>{const open=card.classList.toggle('expanded');toggle.setAttribute('aria-expanded',String(open));toggle.firstElementChild.textContent=open?'Hide instructions':'Show instructions'};
+     card.insertBefore(toggle,content);
+     const img=card.querySelector('.exhead img');if(img){
+       const btn=document.createElement('button');btn.type='button';btn.className='diagram-zoom';btn.setAttribute('aria-label','Enlarge exercise diagram');
+       img.parentNode.insertBefore(btn,img);btn.appendChild(img);
+       btn.onclick=()=>{dlg.querySelector('img').src=img.currentSrc||img.src;dlg.querySelector('img').alt=img.alt||'Exercise diagram';dlg.showModal()};
+     }
+   });
+   if(mobile()){
+     if(firstRender){document.body.classList.remove('mobile-detail')}else{document.body.classList.add('mobile-detail');window.scrollTo(0,0)}
+   }
+   firstRender=false;
+ };
+ // On small screens, render fewer session thumbnails per batch to limit work.
+ const baseDrawList=drawList;
+ drawList=function(){if(mobile()&&state.limit===45)state.limit=20;return baseDrawList()};
+ const download=document.getElementById('download');
+ download.addEventListener('click',e=>{
+   if(!state.data)return;e.preventDefault();
+   const blob=new Blob([JSON.stringify(state.data)],{type:'application/json'});
+   const url=URL.createObjectURL(blob),a=document.createElement('a');
+   a.href=url;a.download='unified.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+})();
+</script></body></html>
